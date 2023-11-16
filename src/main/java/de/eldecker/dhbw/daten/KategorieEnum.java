@@ -7,7 +7,8 @@ package de.eldecker.dhbw.daten;
 public enum KategorieEnum {
 
     INFO("Informatik"), 
-    WISS("Wissenschaft");
+    WISS("Wissenschaft"),
+    WIWI("Wirtschaftswissenschaften");
     
     
     /** Kurzer Beschreibungstext für Spruchkategorie, z.B. "Informatik". */

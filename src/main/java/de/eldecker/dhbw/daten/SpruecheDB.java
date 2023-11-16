@@ -1,15 +1,59 @@
 package de.eldecker.dhbw.daten;
 
+import static de.eldecker.dhbw.daten.KategorieEnum.INFO;
+import static de.eldecker.dhbw.daten.KategorieEnum.WISS;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Datenbank mit Sprüchen aus verschiedenen Kategorien.
  * Es kann höchstens ein Objekt dieser Klasse geben (Singleton!)
  */
 public class SpruecheDB {
 
+    /** Referenz auf Singleton-Instanz dieser Klasse. */
     private static SpruecheDB _singletonInstanz = null;
+    
+    /** 
+     * Map mit allen Sprüchen: jede Kategorie wird auf eine Liste
+     * der Sprüche dieser Kategorie abgebildet. Die Map wird im
+     * Konstruktor gefüllt. 
+     */
+    private Map<KategorieEnum,List<String>> _kategorieZuListeMap = null;
+    
+    /**
+     * Privater Konstruktor (weil Singleton!), baut HashMap mit Sprüchen auf.
+     */
+    private SpruecheDB() {
+
+        int anzahlKategorien = KategorieEnum.values().length;        
+        _kategorieZuListeMap = new HashMap<>(anzahlKategorien);
+                
+        List<String> infoSpruecheList = new ArrayList<>(20);
+        infoSpruecheList.add("Kein Backup? Kein Mitleid!");
+        infoSpruecheList.add("Reboot tut immer gut.");
+        infoSpruecheList.add("The password must be impossible to remember and never written down.");
+        infoSpruecheList.add("Und ist das Coding noch so klein, ein kleiner Bug passt immer rein.");
+        infoSpruecheList.add("Science is what we understand well enough to explain to a computer. Art is everything else we do." );
+        infoSpruecheList.add("The three golden rules to ensure computer security are: do not own a computer; do not power it on; and do not use it."); 
+        infoSpruecheList.add("Requirements are like water: They’re easier to build on when they’re frozen.");
+        infoSpruecheList.add("Who needs a social life when you have the internet?");                
+        _kategorieZuListeMap.put(INFO, infoSpruecheList);
+
+        List<String> wissSprucheList = new ArrayList<>(20);
+        wissSprucheList.add("If we knew what it was we were doing, it would not be called research, would it?");
+        wissSprucheList.add("Ein Mathematiker ist eine Maschine, die Kaffee in Theoreme umwandelt.");
+        wissSprucheList.add("Jede Wissenschaft braucht eine andere Wissenschaft, auf die sie herabblicken kann.");
+        wissSprucheList.add("Eine gute Forschungsarbeit wirft mehr neue Fragen auf als sie beantwortet.");
+        wissSprucheList.add("Ein Buch ist ein Spiegel: wenn ein Affe hineinsieht, so kann kein Apostel herausgucken.");
+        _kategorieZuListeMap.put(WISS, wissSprucheList);
+    }
 
     /**
-     * Getter für Singleton-Instanz.
+     * Getter für Singleton-Instanz; erzeugt Singleton-Instanz bei Bedarf.
      * 
      * @return Singleton-Objekt
      */
@@ -35,12 +79,38 @@ public class SpruecheDB {
      */
     public int getAnzahlSprueche(KategorieEnum kategorie) {
         
-        return 1;
+        List<String> spruchListe = _kategorieZuListeMap.get(kategorie);
+        if (spruchListe != null) {
+            
+            return spruchListe.size();
+            
+        } else {
+            
+            return 0;
+        }
     }
     
+    /**
+     * Methode zum Abruf eines Spruchs anhand {@code index} und {@code kategorie}.
+     * 
+     * @param kategorie Kategorie (z.B. "INFO") des Spruchs
+     * @param index 0-basierte Nummer 
+     * @return Spruch als String oder leerer String, wenn Spruch nicht gefunden wurde.
+     */
     public String getSpruch(KategorieEnum kategorie, int index) {
         
-        return "";
+        List<String> spruchListe = _kategorieZuListeMap.get(kategorie);
+        if (spruchListe == null) {
+                        
+            return "";
+        }
+        
+        if (index >= spruchListe.size() ) {
+            
+            return "";
+        }
+        
+        return spruchListe.get(index);
     }
     
 }
