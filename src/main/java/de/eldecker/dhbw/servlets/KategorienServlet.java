@@ -10,8 +10,8 @@ import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import de.eldecker.dhbw.daten.KategorieRecord;
 import de.eldecker.dhbw.daten.SpruecheDB;
+import de.eldecker.dhbw.servlets.model.KategorieRecord;
 import de.eldecker.dhbw.daten.KategorieEnum;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -29,6 +29,7 @@ public class KategorienServlet extends HttpServlet {
     /** Objekt zur Serialisierung eines Java-Objekts nach JSON; wird im Konstruktor erzeugt. */
     private ObjectMapper _jacksonObjectMapper = null;
     
+    /** Singleton-Instanz von Spruch-DB. */
     private SpruecheDB _sprucheDB = SpruecheDB.getSingleton();
     
     /**
@@ -55,9 +56,9 @@ public class KategorienServlet extends HttpServlet {
         KategorieRecord katRecord = null;
         for (KategorieEnum kategorie : kategorienArray) {
             
-            katRecord = new KategorieRecord(kategorie.name(), 
-                                            kategorie.getBeschreibung(), 
-                                            _sprucheDB.getAnzahlSprueche(kategorie) );                                                        
+            katRecord = new KategorieRecord( kategorie.name(), 
+                                             kategorie.getBeschreibung(), 
+                                             _sprucheDB.getAnzahlSprueche(kategorie) );                                                        
             ergebnisListe.add(katRecord);
         }
         

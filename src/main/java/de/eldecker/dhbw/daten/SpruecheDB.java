@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Datenbank mit Sprüchen aus verschiedenen Kategorien.
@@ -23,6 +24,9 @@ public class SpruecheDB {
      * Konstruktor gefüllt. 
      */
     private Map<KategorieEnum,List<String>> _kategorieZuListeMap = null;
+    
+    /** Zufallsgenerator für Auswahl zufälliger Spruch. */
+    private Random _zufallsGenerator = new Random();
     
     /**
      * Privater Konstruktor (weil Singleton!), baut HashMap mit Sprüchen auf.
@@ -90,15 +94,44 @@ public class SpruecheDB {
         }
     }
     
+
+    
     /**
-     * Methode zum Abruf eines Spruchs anhand {@code index} und {@code kategorie}.
+     * Zufälligen Spruch von {@code kategorie} auswählen.
      * 
-     * @param kategorie Kategorie (z.B. "INFO") des Spruchs
-     * @param index 0-basierte Nummer 
-     * @return Spruch als String oder leerer String, wenn Spruch nicht gefunden wurde.
+     * @param kategorie Kategorie des Spruchs
+     * @return Spruch oder leerer String, wenn Kategorie nicht gefunden
+     *         oder Kategorie leer ist
      */
-    public String getSpruch(KategorieEnum kategorie, int index) {
+    public String getSpruchZufall(KategorieEnum kategorie) {
+
+        List<String> spruchListe = _kategorieZuListeMap.get(kategorie);
+        if (spruchListe == null) {
+                        
+            return "";
+        }
+
+        int anzSprueche = spruchListe.size();        
+        if (anzSprueche == 0) {
+            
+            return "";
+        }
         
+        int zufallsIndex = _zufallsGenerator.nextInt(anzSprueche);        
+        
+        return spruchListe.get(zufallsIndex);
+    }
+
+    /**
+     * Spruch anhand von Index abrufen.
+     * 
+     * @param kategorie Kategorie des Spruchs
+     * @param index 0-basierter Index des Spruchs
+     * @return Spruch oder leerer String, wenn {@code kategorie} nicht gefunden
+     *         wurde, oder wenn {@code index} hinter dem letzten Spruch liegt
+     */
+    public String getSpruchByIndex(KategorieEnum kategorie, int index) {
+
         List<String> spruchListe = _kategorieZuListeMap.get(kategorie);
         if (spruchListe == null) {
                         
@@ -112,5 +145,5 @@ public class SpruecheDB {
         
         return spruchListe.get(index);
     }
-    
+
 }

@@ -1,4 +1,4 @@
-package de.eldecker.dhbw.daten;
+package de.eldecker.dhbw.servlets.model;
 
 /**
  * Ein Record beschreibt eine Spruch-Kategorie (inkl. Anzahl).
