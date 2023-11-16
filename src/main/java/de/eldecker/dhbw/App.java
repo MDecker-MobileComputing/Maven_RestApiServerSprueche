@@ -12,10 +12,16 @@ import de.eldecker.dhbw.servlets.SpruecheServlet;
  * REST-API bereitstellt.
  */
 public class App {
-	
-	/** Portnummer, unter der Jetty die REST-API anbietet. */
-	public static final int PORT_NUMMER = 8080;
-	
+    
+    /** Portnummer, unter der Jetty die REST-API anbietet. */
+    public static final int PORT_NUMMER = 8080;
+    
+    /**
+     * Einstiegsmethod, startet Webserver.
+     * 
+     * @param args Wird nicht ausgewertet
+     * @throws Exception Fehler beim Start von Webserver aufgetreten
+     */
     public static void main(String[] args) throws Exception {
     
         Server server = new Server(PORT_NUMMER);
@@ -23,12 +29,13 @@ public class App {
         ServletHandler handler = new ServletHandler();
         server.setHandler(handler);
 
-        handler.addServletWithMapping(FallbackServlet.class, "/*");
-        handler.addServletWithMapping(SpruecheServlet.class, "/sprueche" );
+        // Servlets für die einzelnen Pfade registrieren
+        handler.addServletWithMapping(FallbackServlet.class  , "/*");
+        handler.addServletWithMapping(SpruecheServlet.class  , "/sprueche" );
         handler.addServletWithMapping(KategorienServlet.class, "/kategorien");
         
         System.out.println("Webserver wird auf Port " + PORT_NUMMER + " gestartet.");
-        server.start();
-        server.join();                
+        server.start(); // throws Exception
+        server.join();  // throws Exception
     }
 }

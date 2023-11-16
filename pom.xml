@@ -1,8 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
 
-  <!-- GAV-Koordinaten fuer die vorliegende Applikation/Library -->
+  <!-- GAV-Koordinaten für das entwickelte Programm -->
   <groupId>de.eldecker.dhbw</groupId>
   <artifactId>rest-api-server-sprueche</artifactId>
   <version>1.0-SNAPSHOT</version>
@@ -13,7 +14,7 @@
   <url>https://github.com/MDecker-MobileComputing/Maven_RestApiServerSprueche</url>
   <name>rest-api-server-sprueche</name>
   <inceptionYear>2023</inceptionYear>
-  <description>Einfache REST-API zur Auslieferung von Sprüchen, wird von Jetty bereitgestellt.</description>
+  <description>Einfache REST-API zur Auslieferung von Sprüchen mit Jetty als Webserver.</description>
     <licenses>
       <license>
         <name>BSD 3-Clause License</name>
@@ -27,32 +28,49 @@
     <maven.compiler.target>17</maven.compiler.target>
   </properties>
 
-  <!-- Abhängigkeiten (Bibliotheken), die das Programm benötigt. --> 
+  <!-- Abhängigkeiten (Bibliotheken), die das Programm benötigt. -->
   <dependencies>
+
+    <!-- Webserver "Jetty" -->
+    <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-server</artifactId>
+        <version>11.0.18</version>
+    </dependency>
+    <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-servlet</artifactId>
+        <version>11.0.18</version>
+    </dependency>
+
+    <!-- "Jackson" für Serialisierung von Java-Objekt nach JSON. -->
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>2.15.3</version>
+    </dependency>
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+          <version>2.15.3</version>
+      </dependency>
+
+    <!-- Für Unit-Tests -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-    	<groupId>org.eclipse.jetty</groupId>
-    	<artifactId>jetty-server</artifactId>
-    	<version>11.0.18</version>
-    </dependency>
-    <dependency>
-    	<groupId>org.eclipse.jetty</groupId>
-    	<artifactId>jetty-servlet</artifactId>
-    	<version>11.0.18</version>
-    </dependency>
+
   </dependencies>
-  
+
   <build>
     <plugins>
         <plugin>
-            <!-- "Fat Jar" bauen, wenn Befehl "mvn package"" ausgeführt wird 
+            <!-- "Fat Jar" bauen, wenn Befehl "mvn package"" ausgeführt wird
                  Das "Fat Jar" sollte sich danach im Ordner "target/" befinden und wird wie folgt ausgeführt:
-                 java -jar rest-api-server-sprueche-1.0-SNAPSHOT-jar-with-dependencies.jar            
+                 java -jar rest-api-server-sprueche-1.0-SNAPSHOT-jar-with-dependencies.jar
                -->
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-assembly-plugin</artifactId>
@@ -61,11 +79,11 @@
                 <descriptorRefs>
                     <descriptorRef>jar-with-dependencies</descriptorRef>
                 </descriptorRefs>
-			    <archive>
-				  <manifest>
-					<mainClass>de.eldecker.dhbw.App</mainClass>
-				  </manifest>
-				</archive>                
+                <archive>
+                  <manifest>
+                    <mainClass>de.eldecker.dhbw.App</mainClass>
+                  </manifest>
+                </archive>
             </configuration>
             <executions>
                 <execution>
@@ -79,5 +97,5 @@
         </plugin>
     </plugins>
   </build>
-    
+
 </project>

@@ -15,22 +15,22 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 public class FallbackServlet extends HttpServlet {
 
-	private static final long serialVersionUID = -80748564301575529L;
+    private static final long serialVersionUID = -80748564301575529L;
 
-	@Override
+    @Override
     protected void doGet(HttpServletRequest request, 
-    		             HttpServletResponse response)
+                         HttpServletResponse response)
             throws ServletException, IOException {
 
         response.setContentType("application/json");
         response.setStatus(SC_OK);
         
         final String nachricht = String.format("Fehler: Unerwarteter Pfad \"%s\" aufgerufen.", 
-        		                               request.getPathInfo());
+                                               request.getPathInfo());
                         
         System.out.println(nachricht);
         
         response.getWriter().println(nachricht);
     }
-	
+    
 }

@@ -10,16 +10,16 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class SpruecheServlet extends HttpServlet {
 
-	private static final long serialVersionUID = -7056944262239900479L;
+    private static final long serialVersionUID = -7056944262239900479L;
 
-	@Override
+    @Override
     protected void doGet(HttpServletRequest request, 
-    		             HttpServletResponse response)
+                         HttpServletResponse response)
             throws ServletException, IOException {
 
         response.setContentType("application/json");
         response.setStatus(SC_OK);
         response.getWriter().println("Sprüche ...");
     }
-	
+    
 }
