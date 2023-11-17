@@ -1,4 +1,4 @@
-package de.eldecker.dhbw;
+package de.eldecker.dhbw.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static de.eldecker.dhbw.daten.KategorieEnum.INFO;
