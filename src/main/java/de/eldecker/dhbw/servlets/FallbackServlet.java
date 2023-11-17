@@ -25,7 +25,7 @@ public class FallbackServlet extends HttpServlet {
                          HttpServletResponse response)
             throws ServletException, IOException {
 
-        response.setContentType("application/json");
+        response.setContentType("text/plain");
         response.setStatus(SC_NOT_FOUND);
         
         final String nachricht = String.format("Fehler: Unerwarteter Pfad \"%s\" aufgerufen.", 
