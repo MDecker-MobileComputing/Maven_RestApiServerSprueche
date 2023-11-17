@@ -1,8 +1,5 @@
 package de.eldecker.dhbw.servlets;
 
-import static de.eldecker.dhbw.daten.KategorieEnum.INFO;
-import static de.eldecker.dhbw.daten.KategorieEnum.WISS;
-import static de.eldecker.dhbw.daten.KategorieEnum.WIWI;
 import static com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT;
 import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static jakarta.servlet.http.HttpServletResponse.SC_OK;
