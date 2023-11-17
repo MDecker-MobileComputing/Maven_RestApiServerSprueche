@@ -45,8 +45,8 @@ public class KategorienServlet extends HttpServlet {
      * Methode wird für HTTP-GET Request aufgerufen.
      */
     @Override
-    protected void doGet(HttpServletRequest request, 
-                         HttpServletResponse response)
+    public void doGet(HttpServletRequest request, 
+                      HttpServletResponse response)
             throws ServletException, IOException {
 
         KategorieEnum[] kategorienArray = KategorieEnum.values();

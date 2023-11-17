@@ -21,7 +21,7 @@ public class FallbackServlet extends HttpServlet {
      * Methode verarbeitet HTTP-GET-Request.
      */
     @Override
-    protected void doGet(HttpServletRequest request, 
+    public void doGet(HttpServletRequest request, 
                          HttpServletResponse response)
             throws ServletException, IOException {
 

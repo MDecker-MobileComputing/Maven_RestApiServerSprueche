@@ -43,7 +43,7 @@ public class SpruecheServlet extends HttpServlet {
      * Methode verarbeitet HTTP-Request für Abfrage von Spruch.
      */
     @Override
-    protected void doGet(HttpServletRequest request, 
+    public void doGet(HttpServletRequest request, 
                          HttpServletResponse response)
             throws ServletException, IOException {
 
