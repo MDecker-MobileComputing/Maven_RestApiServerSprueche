@@ -160,21 +160,16 @@ public class SpruecheServlet extends HttpServlet {
             return Optional.empty();
         }
         
-        String paramKategorieTrimmed = paramKategorie.trim().toUpperCase();
-        switch(paramKategorieTrimmed) {
+        String paramValueNormalized = paramKategorie.trim().toUpperCase();
         
-            case "INFO": 
-                return Optional.of(INFO);
-                
-            case "WISS": 
-                return Optional.of(WISS);
-                
-            case "WIWI": 
-                return Optional.of(WIWI);
+        try {
             
-            default:
-                System.out.println("Kategorie \"" + paramKategorieTrimmed + "\" nicht erkannt.");
-                return Optional.empty();
+            KategorieEnum enumValue = KategorieEnum.valueOf(paramValueNormalized);
+            return Optional.of(enumValue);
+        }
+        catch (IllegalArgumentException ex) {
+            
+            return Optional.empty();
         }        
     }
     
