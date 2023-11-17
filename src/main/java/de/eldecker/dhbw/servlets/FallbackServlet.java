@@ -1,6 +1,6 @@
 package de.eldecker.dhbw.servlets;
 
-import static jakarta.servlet.http.HttpServletResponse.SC_OK;
+import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
 import java.io.IOException;
 
@@ -17,13 +17,16 @@ public class FallbackServlet extends HttpServlet {
 
     private static final long serialVersionUID = -80748564301575529L;
 
+    /**
+     * Methode verarbeitet HTTP-GET-Request.
+     */
     @Override
     protected void doGet(HttpServletRequest request, 
                          HttpServletResponse response)
             throws ServletException, IOException {
 
         response.setContentType("application/json");
-        response.setStatus(SC_OK);
+        response.setStatus(SC_NOT_FOUND);
         
         final String nachricht = String.format("Fehler: Unerwarteter Pfad \"%s\" aufgerufen.", 
                                                request.getPathInfo());

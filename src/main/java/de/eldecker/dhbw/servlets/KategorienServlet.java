@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
 import de.eldecker.dhbw.daten.SpruecheDB;
 import de.eldecker.dhbw.servlets.model.KategorieRecord;

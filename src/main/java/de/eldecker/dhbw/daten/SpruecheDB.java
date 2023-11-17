@@ -56,6 +56,7 @@ public class SpruecheDB {
         _kategorieZuListeMap.put(WISS, wissSprucheList);
     }
 
+
     /**
      * Getter für Singleton-Instanz; erzeugt Singleton-Instanz bei Bedarf.
      * 
@@ -93,7 +94,6 @@ public class SpruecheDB {
             return 0;
         }
     }
-    
 
     
     /**

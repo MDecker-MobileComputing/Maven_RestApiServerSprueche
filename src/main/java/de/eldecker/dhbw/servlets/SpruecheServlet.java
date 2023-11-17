@@ -58,9 +58,7 @@ public class SpruecheServlet extends HttpServlet {
             ergebnisRecord = new SpruchRecord("Keine oder keine gültige Kategorie spezifiziert", false);
             
         } else {
-            
-            
-            
+                                    
             Optional<Integer> nummerOptional = getNummer(request);
             if (nummerOptional.isEmpty()) {
                 
@@ -108,10 +106,9 @@ public class SpruecheServlet extends HttpServlet {
      * @param request Request-Objekt mit URL-Parametern
      * 
      * @return Optional ist leer, wenn der URL-Parameter mit der Nummer nicht gesetzt war oder 
-     *         keine zulässige Nummer (kleiner-gleich 0 oder String, der nicht nach int geparst werden kann) 
-     *         enthält.
-     *         Wenn die Nummer -1 ist, dann soll ein zufälliger Spruch zurückgeliefert werden.
-     *         
+     *         keine zulässige Nummer (kleiner-gleich 0 oder String, der nicht nach int geparst  
+     *         werden kann) enthält.
+     *         Wenn die Nummer -1 ist, dann soll ein zufälliger Spruch zurückgeliefert werden.         
      */
     private Optional<Integer> getNummer(HttpServletRequest request) {
 
@@ -127,20 +124,17 @@ public class SpruecheServlet extends HttpServlet {
             return Optional.of(-1);
         }
         
-        int nummer = 0;
-                        
+        int nummer = 0;                        
         try {
             
-            nummer = Integer.parseInt(paramNummerTrimmed);
-            
+            nummer = Integer.parseInt(paramNummerTrimmed);            
             if (nummer <= 0) {
                 
                 System.out.println("Nummer \"" + paramNummerTrimmed + "\" war kleiner-gleich 0.");
                 return Optional.empty();
             }
             
-            return Optional.of(nummer);
-            
+            return Optional.of(nummer);            
         }
         catch (NumberFormatException ex) {
             

@@ -8,7 +8,7 @@ import de.eldecker.dhbw.servlets.KategorienServlet;
 import de.eldecker.dhbw.servlets.SpruecheServlet;
 
 /**
- * Einstiegsklasse des Programms, startet Webserver, der die
+ * Einstiegsklasse des Programms; startet Webserver, der die
  * REST-API bereitstellt.
  */
 public class App {
@@ -17,7 +17,7 @@ public class App {
     public static final int PORT_NUMMER = 8080;
     
     /**
-     * Einstiegsmethod, startet Webserver.
+     * Einstiegsmethode, startet Webserver.
      * 
      * @param args Wird nicht ausgewertet
      * @throws Exception Fehler beim Start von Webserver aufgetreten
