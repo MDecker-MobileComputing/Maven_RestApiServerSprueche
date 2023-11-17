@@ -43,8 +43,8 @@ public class SpruecheServlet extends HttpServlet {
      * Methode verarbeitet HTTP-Request für Abfrage von Spruch.
      */
     @Override
-    public void doGet(HttpServletRequest request, 
-                         HttpServletResponse response)
+    public void doGet( HttpServletRequest request, 
+                       HttpServletResponse response )
             throws ServletException, IOException {
 
         SpruchRecord ergebnisRecord = null;
@@ -52,14 +52,14 @@ public class SpruecheServlet extends HttpServlet {
         Optional<KategorieEnum> kategorieOptional = getKategorie(request);        
         if (kategorieOptional.isEmpty()) {
             
-            ergebnisRecord = new SpruchRecord("Keine oder keine gültige Kategorie spezifiziert", false);
+            ergebnisRecord = new SpruchRecord("Keine oder keine gültige Kategorie spezifiziert.", false);
             
         } else {
                                     
             Optional<Integer> nummerOptional = getNummer(request);
             if (nummerOptional.isEmpty()) {
                 
-                ergebnisRecord = new SpruchRecord("Keine oder keine gültige Spruchnummer spezifiziert", false);
+                ergebnisRecord = new SpruchRecord("Keine oder keine gültige Spruchnummer spezifiziert.", false);
                 
             } else {
              

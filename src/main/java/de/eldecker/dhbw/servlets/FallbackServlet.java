@@ -21,8 +21,8 @@ public class FallbackServlet extends HttpServlet {
      * Methode verarbeitet HTTP-GET-Request.
      */
     @Override
-    public void doGet(HttpServletRequest request, 
-                         HttpServletResponse response)
+    public void doGet( HttpServletRequest request, 
+                       HttpServletResponse response )
             throws ServletException, IOException {
 
         response.setContentType("text/plain");

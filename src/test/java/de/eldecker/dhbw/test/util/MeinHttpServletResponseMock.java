@@ -22,6 +22,7 @@ public class MeinHttpServletResponseMock implements HttpServletResponse {
     /** HTTP Status Code */
     private int _status = -1;
     
+    /** StringWriter, um Antwortzeilen, die von Servlet geschrieben werden, zu sammeln. */
     private StringWriter _stringWriter = new StringWriter();
     
     /** Für Ausgabe (Response) von Servlet. */ 

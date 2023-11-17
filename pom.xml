@@ -69,7 +69,12 @@
 	    <artifactId>json</artifactId><!-- für Parsen von JSON-Dateien -->
 	    <version>20231013</version>
 		<scope>test</scope>	    
-	</dependency>	
+	</dependency>
+	<dependency>
+	    <groupId>org.mockito</groupId>
+	    <artifactId>mockito-core</artifactId>
+	    <version>5.7.0</version>
+	</dependency>
 
   </dependencies>
 
@@ -79,7 +84,7 @@
             <!-- "Fat Jar" bauen, wenn Befehl "mvn package"" ausgeführt wird
                  Das "Fat Jar" sollte sich danach im Ordner "target/" befinden und wird wie folgt ausgeführt:
                  java -jar rest-api-server-sprueche-1.0-SNAPSHOT-jar-with-dependencies.jar
-               -->
+              -->
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-assembly-plugin</artifactId>
             <version>3.6.0</version><!-- Für neueste Version siehe https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-assembly-plugin -->
