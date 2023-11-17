@@ -138,7 +138,7 @@ public class SpruecheDB {
             return "";
         }
         
-        if (index >= spruchListe.size() ) {
+        if (index < 0 || index >= spruchListe.size() ) {
             
             return "";
         }
