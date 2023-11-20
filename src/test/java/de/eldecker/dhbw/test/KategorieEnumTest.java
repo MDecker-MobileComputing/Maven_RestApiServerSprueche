@@ -15,7 +15,8 @@ public class KategorieEnumTest {
     void mindestensEineKategorie() {
 
         KategorieEnum[] kategorieArray = KategorieEnum.values();        
-        assertTrue(kategorieArray.length > 0, "Keine einzige Kategorie definiert!");
+        assertTrue( kategorieArray.length > 0, 
+                    "Keine einzige Kategorie definiert!" );
     }
     
     @Test
@@ -23,7 +24,8 @@ public class KategorieEnumTest {
         
         for (KategorieEnum k: KategorieEnum.values()) {
             
-            assertFalse ( k.getBeschreibung().isBlank(), "Kategorie ohne Beschreibungstext gefunden" );
+            assertFalse ( k.getBeschreibung().isBlank(), 
+                          "Kategorie ohne Beschreibungstext gefunden" );
         }        
     }
         
