@@ -43,51 +43,11 @@ public class SpruecheServlet extends HttpServlet {
      * Methode verarbeitet HTTP-Request für Abfrage von Spruch.
      */
     @Override
-    public void doGet( HttpServletRequest request, 
-                       HttpServletResponse response )
-            throws ServletException, IOException {
+    public void doGet( HttpServletRequest request, HttpServletResponse response )                        
+             throws ServletException, IOException {
 
-        SpruchRecord ergebnisRecord = null;
-        
-        Optional<KategorieEnum> kategorieOptional = getKategorie(request);        
-        if (kategorieOptional.isEmpty()) {
-            
-            ergebnisRecord = new SpruchRecord("Keine oder keine gültige Kategorie spezifiziert.", false);
-            
-        } else {
-                                    
-            Optional<Integer> nummerOptional = getNummer(request);
-            if (nummerOptional.isEmpty()) {
+        SpruchRecord ergebnisRecord = urlParameter2Spruch(request);        
                 
-                ergebnisRecord = new SpruchRecord("Keine oder keine gültige Spruchnummer spezifiziert.", false);
-                
-            } else {
-             
-                KategorieEnum kategorie = kategorieOptional.get();
-                int nummer = nummerOptional.get();
-                
-                String spruch = "";
-                if (nummer == -1) {
-                    
-                    spruch = _spruecheDB.getSpruchZufall(kategorie);
-                            
-                } else {
-                    
-                    spruch = _spruecheDB.getSpruchByIndex(kategorie, nummer-1);
-                }
-                
-                if (spruch.isBlank()) {
-                    
-                    ergebnisRecord = new SpruchRecord("Kein Spruch der gewünschten Kategorie gefunden.", false);
-                    
-                } else {
-                    
-                    ergebnisRecord = new SpruchRecord(spruch, true);
-                }                
-            }            
-        }
-        
-        
         response.setContentType("application/json");
         
         int httpStatusCode = ergebnisRecord.erfolg() ? SC_OK : SC_BAD_REQUEST;
@@ -96,6 +56,56 @@ public class SpruecheServlet extends HttpServlet {
         String ergebnisJson = _jacksonObjectMapper.writeValueAsString(ergebnisRecord);        
         response.getWriter().println(ergebnisJson);
     }
+
+    /**
+     * Die Methode versucht, anhand der URL-Parameter aus {@code request}
+     * den Spruch zu bestimmten.
+     * 
+     * @param request Request-Objekt, um URL-Parameter zu extrahieren
+     * @return Objekt mit Spruch; hat {@code erfolg=true} wenn der Spruch bestimmt werden 
+     *         konnte, sonst {@code erfolg=false}; im letzteren Fall enthält das Attribut
+     *         "text" statt dem Spruch eine kurze Fehlerbeschreibung.
+     */
+    private SpruchRecord urlParameter2Spruch(HttpServletRequest request) {
+        
+        Optional<KategorieEnum> kategorieOptional = getKategorie(request);        
+        if (kategorieOptional.isEmpty()) {
+            
+            return new SpruchRecord("Keine oder keine gültige Kategorie spezifiziert.", false);
+            
+        } 
+                                                    
+        Optional<Integer> nummerOptional = getNummer(request);
+        if (nummerOptional.isEmpty()) {
+                
+            return new SpruchRecord("Keine oder keine gültige Spruchnummer spezifiziert.", false);
+                
+         } else {
+             
+            KategorieEnum kategorie = kategorieOptional.get();
+            int nummer = nummerOptional.get();
+            
+            String spruch = "";
+            if (nummer == -1) {
+                
+                spruch = _spruecheDB.getSpruchZufall(kategorie);
+                        
+            } else {
+                
+                spruch = _spruecheDB.getSpruchByIndex(kategorie, nummer-1);
+            }
+            
+            if (spruch.isBlank()) {
+                
+                return new SpruchRecord("Kein Spruch der gewünschten Kategorie gefunden.", false);
+                
+            } else {
+                
+                return new SpruchRecord(spruch, true);
+            }                
+        }            
+    }
+        
     
     /**
      * URL-Parameter für Nummer des Spruchs auswerten.
