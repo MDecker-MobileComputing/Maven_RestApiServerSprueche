@@ -7,6 +7,7 @@ package de.eldecker.dhbw.daten;
 public enum KategorieEnum {
 
     INFO("Informatik"), 
+    MATHE("Mathematik"),
     WISS("Wissenschaft"),
     WIWI("Wirtschaftswissenschaften");
     
