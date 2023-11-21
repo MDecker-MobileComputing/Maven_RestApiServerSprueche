@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import de.eldecker.dhbw.daten.KategorieEnum;
 import de.eldecker.dhbw.servlets.KategorienServlet;
-import de.eldecker.dhbw.test.util.MeinHttpServletResponseMock;
+import de.eldecker.dhbw.test.util.MeinHttpServletResponseTestDouble;
 
 public class KategorienServletTest {
 
@@ -20,17 +20,17 @@ public class KategorienServletTest {
     @Test
     void happyPath() throws Exception {
         
-        MeinHttpServletResponseMock responseMock = new MeinHttpServletResponseMock(); 
+        MeinHttpServletResponseTestDouble responseTestDouble = new MeinHttpServletResponseTestDouble(); 
         
         
         // *** Call method under test ***
-        _cut.doGet(null, responseMock);
+        _cut.doGet(null, responseTestDouble);
         
         
-        assertEquals( "application/json", responseMock.getContentType());
-        assertEquals( 200, responseMock.getStatus());
+        assertEquals( "application/json", responseTestDouble.getContentType());
+        assertEquals( 200, responseTestDouble.getStatus());
         
-        String resultString = responseMock.getStringWrittenToPrintWriter();
+        String resultString = responseTestDouble.getStringWrittenToPrintWriter();
         
         JSONArray jsonArray = new JSONArray(resultString);
         int jsonArrayLenght = jsonArray.length();

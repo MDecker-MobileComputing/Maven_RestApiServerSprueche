@@ -11,11 +11,11 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Manuell erzeugte Mock-Klasse. Ein Objekt dieser Klasse wird als zweites
+ * Manuell erzeugte Test-Double-Klasse. Ein Objekt dieser Klasse wird als zweites
  * Argument für Aufrufe der Methode {@code doGet()} von Servlet-Klassen
  * benötigt.
  */
-public class MeinHttpServletResponseMock implements HttpServletResponse {
+public class MeinHttpServletResponseTestDouble implements HttpServletResponse {
 
     private String _contentType = "";
     
