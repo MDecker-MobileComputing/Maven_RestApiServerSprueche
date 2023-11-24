@@ -72,7 +72,6 @@ public class SpruecheServlet extends HttpServlet {
         if (kategorieOptional.isEmpty()) {
 
             return new SpruchRecord("Keine oder keine gültige Kategorie spezifiziert.", false);
-
         }
 
         Optional<Integer> nummerOptional = getNummer(request);
@@ -145,7 +144,7 @@ public class SpruecheServlet extends HttpServlet {
         }
         catch (NumberFormatException ex) {
 
-            System.out.println("Nummer \"" + paramNummerTrimmed + "\" konnte nicht nach int geparst werden.");
+            System.out.println("Nummer \"" + paramNummerTrimmed + "\" konnte nicht als int-Wert geparst werden.");
             return Optional.empty();
         }
     }
