@@ -4,3 +4,4 @@
 @REM java -jar <Classpath-String> de.eldecker.dhbw.App
 
 mvn dependency:build-classpath
+
