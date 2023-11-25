@@ -1,1 +1,5 @@
+# Ordner, in den Maven seine Ergebnisse ablegt
 target/
+
+# Ordner mit Eclipse-Einstellungen
+.settings/
