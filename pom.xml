@@ -14,12 +14,12 @@
   <url>https://github.com/MDecker-MobileComputing/Maven_RestApiServerSprueche</url>
   <name>rest-api-server-sprueche</name>
   <inceptionYear>2023</inceptionYear>
-  <description>Einfache REST-API zur Auslieferung von Sprüchen mit Jetty als Webserver.</description>
-    <licenses>
-      <license>
-        <name>BSD 3-Clause License</name>
-        <url>https://opensource.org/license/BSD-3-clause/</url>
-      </license>
+  <description>Einfache REST-API (Java) zur Auslieferung von Sprüchen mit Jetty als Webserver.</description>
+  <licenses>
+    <license>
+      <name>BSD 3-Clause License</name>
+      <url>https://opensource.org/license/BSD-3-clause/</url>
+    </license>
   </licenses>
 
   <properties>
@@ -70,7 +70,7 @@
 	    <version>20231013</version>
 		<scope>test</scope>
 	</dependency>
-	
+
 	<dependency>
 	    <groupId>org.mockito</groupId>
 	    <artifactId>mockito-core</artifactId>
