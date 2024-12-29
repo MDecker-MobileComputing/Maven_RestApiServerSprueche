@@ -70,7 +70,6 @@ zwei Key-Value-Paare enthält:
   die Fehlermeldung (`erfolg=false`).
 
 
-
 Beispiel für einen erfolgreichen Aufruf:
 ```
 {
